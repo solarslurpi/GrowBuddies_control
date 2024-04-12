@@ -12,6 +12,7 @@ class PIDController:
         self.tent_name = tent_name
         self.controller_type = controller_type
         self.udp_port = udp_port
+        self.logger.debug("Finished init.")
 
     async def process_queue(self):
         cnt_num = 0
@@ -19,6 +20,7 @@ class PIDController:
         max_cnt = 20
         while True:
             try:
+                self.logger.debug(f"Waiting for snifferbuddy reading...")
                 sniffer_buddy = await asyncio.wait_for(SnifferBuddyQueue.get(), timeout=timeout)
             except asyncio.TimeoutError:
                 if cnt_num >= max_cnt:

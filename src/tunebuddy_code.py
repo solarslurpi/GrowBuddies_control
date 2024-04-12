@@ -54,7 +54,7 @@ async def main():
     simulator_task = asyncio.create_task(simulate_data_input())
 
     # Start processing readings from the queue
-    result = await sniffer_buddy_process.process_readings(max_retries, timeout_duration)
+    result = await sniffer_buddy_process.process_reading(max_retries, timeout_duration)
     if result is not None:
         print(f"Process completed successfully with data: {result}")
     else:
